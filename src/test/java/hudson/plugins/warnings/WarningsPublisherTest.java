@@ -1,5 +1,7 @@
 package hudson.plugins.warnings;
 
+import static org.mockito.Mockito.*;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -9,6 +11,8 @@ import org.jvnet.hudson.test.HudsonTestCase;
 import com.google.common.collect.Lists;
 
 import hudson.model.Action;
+
+import hudson.plugins.analysis.core.ConfigurationReference;
 
 /**
  * Tests the class {@link WarningsPublisher}.
@@ -71,14 +75,12 @@ public class WarningsPublisherTest extends HudsonTestCase {
     }
 
     private void checkFileOrder(final List<ParserConfiguration> fileParsers, final List<String> expected) {
-        WarningsPublisher publisher = new WarningsPublisher(null, null, null, null, false, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, false, false, false, false, null, null, false,
-                fileParsers, null);
+        WarningsPublisher publisher = new WarningsPublisher(mock(ConfigurationReference.class), null, null, false, fileParsers, null);
         checkOrder(expected, publisher);
     }
 
     private void checkConsoleOrder(final List<ConsoleParser> consoleParsers, final List<String> expected) {
-        WarningsPublisher publisher = new WarningsPublisher(null, null, null, null, false, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, false, false, false, false, null, null, false,
-                null, consoleParsers);
+        WarningsPublisher publisher = new WarningsPublisher(mock(ConfigurationReference.class), null, null, false, null, consoleParsers);
         checkOrder(expected, publisher);
     }
 
