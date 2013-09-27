@@ -11,8 +11,8 @@
     </j:if>
 
   <j:invokeStatic var="allParsers" className="hudson.plugins.warnings.parser.ParserRegistry" method="getAvailableParsers"/>
-  
-  <f:entry title="${%Parser}" description="${%description.parser}">
+
+  <f:entry title="${%Parser}" description="${%description.parser(rootURL+'/configure')}">
     <select class="setting-input" name="parserName">
       <j:forEach var="availableParser" items="${allParsers}">
         <f:option selected="${availableParser.isInGroup(instance == null ? null : instance.parserName)}"

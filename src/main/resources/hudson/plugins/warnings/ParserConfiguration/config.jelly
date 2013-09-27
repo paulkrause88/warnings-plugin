@@ -7,7 +7,7 @@
     description="${%description.pattern('http://ant.apache.org/manual/Types/fileset.html')}">
     <f:textbox />
   </f:entry>
-  <f:entry title="${%Parser}" description="${%description.parser}" field="parserName">
+  <f:entry title="${%Parser}" description="${%description.parser(rootURL+'/configure')}" field="parserName">
     <f:select/>
   </f:entry>
 
