@@ -81,7 +81,7 @@ public abstract class RegexpParser extends AbstractWarningsParser implements War
      *             indicates that the user canceled the operation
      */
     protected void findAnnotations(final String content, final List<FileAnnotation> warnings) throws ParsingCanceledException {
-        Matcher matcher = pattern.matcher(content);
+        Matcher matcher = createMatcher(content);
 
         while (matcher.find()) {
             Warning warning = createWarning(matcher);
@@ -93,6 +93,16 @@ public abstract class RegexpParser extends AbstractWarningsParser implements War
                 throw new ParsingCanceledException();
             }
         }
+    }
+
+    /**
+     * Creates a new Matcher that will match the given content against the compiler warnings pattern.
+     *
+     * @param content The input to be matched
+     * @return a new matcher for the compiler warnings pattern
+     */
+    protected final Matcher createMatcher(final String content) {
+        return pattern.matcher(content);
     }
 
     /**
